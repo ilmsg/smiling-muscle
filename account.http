@@ -1,0 +1,73 @@
+@host = http://localhost:7000
+
+###
+POST {{host}}/accounts
+Content-Type: application/json
+
+{
+  "code": "101",
+  "name": "Cash (เงินสด)",
+  "type": "Asset"
+}
+
+###
+POST {{host}}/accounts
+Content-Type: application/json
+
+{
+  "code": "201",
+  "name": "เจ้าหนี้",
+  "type": "Liability"
+}
+
+###
+POST {{host}}/accounts
+Content-Type: application/json
+
+{
+  "code": "301",
+  "name": "ทุน (เจ้าของลงเงิน)",
+  "type": "Equity"
+}
+
+###
+POST {{host}}/accounts
+Content-Type: application/json
+
+{
+  "code": "401",
+  "name": "Sales Revenue (รายได้จากการขาย)",
+  "type": "Revenue"
+}
+
+###
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "description": "ขายสินค้า A ได้เงินสด",
+  "items": [
+    {
+      "account_id": 1,
+      "debit": 500.0,
+      "credit": 0
+    },
+    {
+      "account_id": 2,
+      "debit": 0,
+      "credit": 500.0
+    }
+  ]
+}
+
+###
+GET {{host}}/report/trial-balance
+Content-Type: application/json
+
+###
+GET {{host}}/report/income-statement
+Content-Type: application/json
+
+###
+GET {{host}}/report/balance-sheet
+Content-Type: application/json
